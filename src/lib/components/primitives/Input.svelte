@@ -7,7 +7,7 @@
 
     identifier++; 
 
-    let className = "";
+    let className: string = "";
 
     export { className as class }; // exposes classes for the <input /> element
     export let placeholder: string;
@@ -16,12 +16,12 @@
 
 </script>
 
-<div class="relative bg-transparent">
+<div class="relative bg-transparent w-full">
     <input {id} 
         use:setInputType={type}
         placeholder=" "
         class="p-4 w-full rounded-xl border-solid border-2 border-purple-400 outline-none {className}"
-    >
+    />
     <label 
         for={id} 
         class="absolute left-4 top-1/2 -translate-y-1/2 transition-top 

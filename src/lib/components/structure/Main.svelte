@@ -1,10 +1,7 @@
 <script lang="ts">
-    import SearchBar from "../ui/SearchBar.svelte";
 </script>
 
 
-<main>
-    <div class="w-9/12">
-        <SearchBar />
-    </div>
+<main class="flex p-8 justify-center">
+    <!-- main content (CEP info) will be displayed here -->
 </main>
