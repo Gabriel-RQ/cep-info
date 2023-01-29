@@ -6,12 +6,12 @@
   border: none;
   box-sizing: border-box;
   margin: none;
+  padding: 0;
 }
 
 :root {
-
-  font-family: 'Cabin', sans-serif;
-  font-size: 16px;
+  font-family: "Cabin", sans-serif;
+  font-size: 14px;
   line-height: 24px;
   font-weight: 400;
 
@@ -29,17 +29,34 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  display: grid;
-  grid-template-rows: 15% 75% 10%;
-  height: 100%;
-  width: 100%;
-}
-
-
 @media (prefers-color-scheme: dark) {
   :root {
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
+  }
+}
+
+body {
+  display: grid;
+  grid-template-rows: 30% 70% 5%;
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    grid-template-rows: 15% 80% 5%;
+  }
+}
+
+@media screen and (min-width: 1536px) {
+  :root {
+    font-size: 18px;
   }
 }
