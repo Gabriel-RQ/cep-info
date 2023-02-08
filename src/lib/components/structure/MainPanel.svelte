@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fly } from "svelte/transition";
+  import { fade, fly, scale } from "svelte/transition";
 
   export let cep: string;
 
@@ -18,12 +18,6 @@
     siafi: string;
   }
 
-  fetch(
-    "http://pt.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=Seberi%20Page"
-  )
-    .then((res) => res.json())
-    .then((data) => console.log(data));
-
   async function searchForCEP(cep: string): Promise<ICepInfo> {
     const response = await fetch(apiPath(cep));
     const json = await response.json();
@@ -36,20 +30,26 @@
   }
 </script>
 
-<section class="flex flex-col gap-2 text-center text-xl">
+<section
+  in:fade={{ duration: 500 }}
+  class="flex flex-col gap-2 text-center text-xl"
+>
   {#if cep && cep.length === 9}
     {#await searchForCEP(cep)}
       <p>Procurando...</p>
     {:then cepInfo}
-      <h2 class="font-bold text-3xl text-center mb-4">
-        Dados do CEP informado:
-      </h2>
+      <div in:scale>
+        <h2 class="font-bold text-3xl text-center mb-4">
+          Dados do CEP informado:
+        </h2>
 
-      <p>Cidade/Localidade: {cepInfo.localidade || "Sem Dados"}</p>
-      <p>Logradouro: {cepInfo.logradouro || "Sem dados"}</p>
-      <p>Bairro: {cepInfo.bairro || "Sem dados"}</p>
-      <p>Unidade Federativa (UF): {cepInfo.uf || "Sem dados"}</p>
-      <p>Código do IBGE: {cepInfo.ibge || "Sem dados"}</p>
+        <p>Cidade/Localidade: {cepInfo.localidade || "Sem Dados"}</p>
+        <p>Logradouro: {cepInfo.logradouro || "Sem dados"}</p>
+        <p>Bairro: {cepInfo.bairro || "Sem dados"}</p>
+        <p>Unidade Federativa: {cepInfo.uf || "Sem dados"}</p>
+        <p>DDD: {`(${cepInfo.ddd})` || "Sem dados"}</p>
+        <p>Código do IBGE: {cepInfo.ibge || "Sem dados"}</p>
+      </div>
     {:catch error}
       <p
         transition:fly={{ y: 100 }}

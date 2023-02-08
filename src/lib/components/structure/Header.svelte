@@ -2,6 +2,7 @@
   import NavButton from "../primitives/NavButton.svelte";
   import SearchBar from "../ui/SearchBar.svelte";
   import { createEventDispatcher } from "svelte";
+  import { actualPanel } from "../../stores/panelStore";
 
   const dispatch = createEventDispatcher();
   let cep = "";
@@ -21,8 +22,8 @@
   <SearchBar bind:cep on:click={search} class="header-search p-4 " />
 
   <nav class="flex gap-8">
-    <NavButton>Principal</NavButton>
-    <NavButton>Sobre</NavButton>
+    <NavButton on:click={() => ($actualPanel = "main")}>Principal</NavButton>
+    <NavButton on:click={() => ($actualPanel = "about")}>Sobre</NavButton>
   </nav>
 
   <!-- <div>GitHub</div> -->
