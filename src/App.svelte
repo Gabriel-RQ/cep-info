@@ -24,7 +24,7 @@
 
   function handleSearch(event: CustomEvent) {
     cep = (event as SearchEvent).detail.cep;
-    console.log(cep);
+    $actualPanel = "main";
   }
 </script>
 

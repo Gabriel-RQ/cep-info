@@ -8,7 +8,7 @@
   export { className as class };
 </script>
 
-<div class="w-full flex {className}">
+<div class="w-full sm:w-3/4 md:w-2/3 lg:w-full  flex {className}">
   <Input
     on:input={maskInputCEP}
     bind:value={cep}
